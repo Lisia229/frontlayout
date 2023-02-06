@@ -6,12 +6,14 @@ import router from './router'
 
 import pinia from './plugins/pinia'
 
-import './css/main.css'
-
 import './css/style.css'
+import { useUserStore } from '@/stores/users'
+import VueTailwindDatepicker from 'vue-tailwind-datepicker'
 ;(async () => {
   const app = createApp(App)
-  app.use(router)
   app.use(pinia)
+  app.use(VueTailwindDatepicker)
+  await useUserStore().getUser()
+  app.use(router)
   app.mount('#app')
 })()

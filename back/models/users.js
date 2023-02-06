@@ -3,6 +3,7 @@ import validator from 'validator'
 import bcrypt from 'bcrypt'
 
 const cartSchema = new Schema({
+  // -購物車
   p_id: {
     type: ObjectId,
     ref: 'products',
@@ -18,7 +19,7 @@ const schema = new Schema({
   account: {
     type: String,
     required: [true, '缺少帳號'],
-    minlength: [4, '帳號太短'],
+    minlength: [3, '帳號太短'],
     maxlength: [20, '帳號太長'],
     unique: true,
     match: [/^[A-Za-z0-9]+$/, '帳號格式錯誤']
@@ -45,6 +46,9 @@ const schema = new Schema({
   cart: {
     type: [cartSchema],
     default: []
+  },
+  image: {
+    type: String
   },
   role: {
     type: Number,

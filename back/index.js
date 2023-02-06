@@ -3,6 +3,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import userRoute from './routes/users.js'
+import exhibitionsRoute from './routes/exhibitions.js'
+import storeRoute from './routes/stories.js'
 import './passport/passport.js'
 
 mongoose.connect(process.env.DB_URL)
@@ -36,6 +38,8 @@ app.use((_, req, res, next) => {
   res.status(400).json({ success: false, message: '格式錯誤' })
 })
 app.use('/users', userRoute)
+app.use('/exhibitions', exhibitionsRoute)
+app.use('/stories', storeRoute)
 
 app.all('*', (req, res) => {
   res.status(404).json({ success: false, message: '找不到' })
